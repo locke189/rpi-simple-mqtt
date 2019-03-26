@@ -26,7 +26,7 @@ def on_connect(client, userdata, flags, rc):
     # Subscribing in on_connect() means that if we lose the connection and
     # reconnect then subscriptions will be renewed.
     client.subscribe("devices/1", 0)
-    client.publish(topic="devices/1", payload="device-off", 0)
+    client.publish(topic="devices/1", payload="device-off")
     
 
 # The callback for when a PUBLISH message is received from the server.
@@ -37,11 +37,11 @@ def on_message(client, userdata, msg):
       if led.value == 1:
           print("on")
           led.off()
-          client.publish(topic="devices/1", payload="device-off", 0)
+          client.publish(topic="devices/1", payload="device-off")
       else:
           print("off")
           led.on()
-          client.publish(topic="devices/1", payload="device-on", 0)
+          client.publish(topic="devices/1", payload="device-on")
 
 led.off()
 
