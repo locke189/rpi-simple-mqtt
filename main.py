@@ -53,6 +53,7 @@ client.configureOfflinePublishQueueing(-1)  # Infinite offline Publish queueing
 client.configureDrainingFrequency(2)  # Draining: 2 Hz
 client.configureConnectDisconnectTimeout(10)  # 10 sec
 client.configureMQTTOperationTimeout(5)  # 5 sec
+client.configureAutoReconnectBackoffTime(1, 32, 20)
 
 #client.on_connect = on_connect
 #client.on_message = on_message
