@@ -1,3 +1,3 @@
 {
-  "python.pythonPath": "rpi-mqtt-env/bin/python3.7"
+  "python.pythonPath": "/Library/Frameworks/Python.framework/Versions/3.6/bin/python3"
 }
