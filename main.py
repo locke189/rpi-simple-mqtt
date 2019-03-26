@@ -46,7 +46,7 @@ def on_message(client, userdata, msg):
 led.off()
 
 client = mqtt(CLIENT_ID)
-client.configureEndpoint("YOUR.ENDPOINT", 8883)
+client.configureEndpoint(HOST, PORT)
 client.configureCredentials(ROOT_CA_PATH, PRIVATE_KEY_PATH, DEVICE_CA_PATH)
 
 client.configureOfflinePublishQueueing(-1)  # Infinite offline Publish queueing
