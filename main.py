@@ -18,7 +18,7 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
 
-    if msg.topic == 'devices/1' and msg.payload == 'toggle':
+    if msg.topic == 'devices/1' and str(msg.payload.decode("utf-8")) == 'toggle':
       if led.value == 1:
           print("on")
           led.off()
