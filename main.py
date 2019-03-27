@@ -9,10 +9,9 @@ ROOT_PATH = os.path.dirname(os.path.realpath(__file__))
 ROOT_CA_PATH = ROOT_PATH + "/certs/root-CA.crt"
 DEVICE_CA_PATH = ROOT_PATH + "/certs/RPI-DeathRay.cert.pem"
 PRIVATE_KEY_PATH = ROOT_PATH + "/certs/RPI-DeathRay.private.key"
-PUBLIC_KEY_PATH = ROOT_PATH + "/certs/RPI-DeathRay.public.key"
 
 #MQTT CLIENT CONFIG
-CLIENT_ID = "DEATH_RAY_00"
+CLIENT_ID = "DEATHRAY00"
 HOST = "a1195qphodhbi1-ats.iot.us-east-1.amazonaws.com"
 PORT = 8883
 
@@ -48,11 +47,11 @@ client = mqtt(CLIENT_ID)
 client.configureEndpoint(HOST, PORT)
 client.configureCredentials(ROOT_CA_PATH, PRIVATE_KEY_PATH, DEVICE_CA_PATH)
 
+client.configureAutoReconnectBackoffTime(1, 32, 20)
 client.configureOfflinePublishQueueing(-1)  # Infinite offline Publish queueing
 client.configureDrainingFrequency(2)  # Draining: 2 Hz
 client.configureConnectDisconnectTimeout(10)  # 10 sec
 client.configureMQTTOperationTimeout(5)  # 5 sec
-client.configureAutoReconnectBackoffTime(1, 32, 20)
 
 #client.on_connect = on_connect
 #client.on_message = on_message
