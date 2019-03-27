@@ -14,6 +14,11 @@ ROOT_CA_PATH = ROOT_PATH + "/certs/root-CA.crt"
 DEVICE_CA_PATH = ROOT_PATH + "/certs/RPI-DeathRay.cert.pem"
 PRIVATE_KEY_PATH = ROOT_PATH + "/certs/RPI-DeathRay.private.key"
 
+print(ROOT_CA_PATH)
+print(DEVICE_CA_PATH)
+print(PRIVATE_KEY_PATH)
+
+
 #MQTT CLIENT CONFIG
 CLIENT_ID = "DEATHRAY00"
 HOST = "a1195qphodhbi1-ats.iot.us-east-1.amazonaws.com"
