@@ -57,15 +57,16 @@ client.configureAutoReconnectBackoffTime(1, 32, 20)
 #client.on_connect = on_connect
 #client.on_message = on_message
 
-client.onMessage = on_message
-client.onOnline = on_connect
+# client.onMessage = on_message
+# client.onOnline = on_connect
+
 print('connecting')
 client.connect()
 print('subscribing')
-client.subscribe("devices/1", 0)
+client.publish(topic="devices/1", payload="device-on")
 print('last')
 # Blocking call that processes network traffic, dispatches callbacks and
 # handles reconnecting.
 # Other loop*() functions are available that give a threaded interface and a
 # manual interface.
-client.loop_forever()
+#client.loop_forever()
