@@ -73,10 +73,10 @@ client.configureMQTTOperationTimeout(5)  # 5 sec
 
 print('connecting')
 client.connect()
-client.subscribe(topic, 1, on_message)
+client.subscribe(TOPIC, 1, on_message)
 time.sleep(2)
 print('subscribing')
-# client.publish(topic="devices/1", payload="device-on")
+# client.publish(TOPIC="devices/1", payload="device-on")
 print('last')
 # Blocking call that processes network traffic, dispatches callbacks and
 # handles reconnecting.
@@ -89,7 +89,7 @@ while True:
     message['message'] = 'hello world'
     message['sequence'] = loopCount
     messageJson = json.dumps(message)
-    client.publish(topic, messageJson, 1)
-    print('Published topic %s: %s\n' % (topic, messageJson))
+    client.publish(TOPIC, messageJson, 1)
+    print('Published TOPIC %s: %s\n' % (topic, messageJson))
     loopCount += 1
     time.sleep(1)
