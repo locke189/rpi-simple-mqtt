@@ -3,6 +3,10 @@ from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
 from time import sleep
 from gpiozero import LED
 import os 
+import logging
+import time
+import argparse
+import json
 
 #CERT STUFF
 ROOT_PATH = os.path.dirname(os.path.realpath(__file__))
@@ -17,6 +21,13 @@ PORT = 8883
 
 led = LED(19)
 
+# Configure logging
+logger = logging.getLogger("AWSIoTPythonSDK.core")
+logger.setLevel(logging.DEBUG)
+streamHandler = logging.StreamHandler()
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+streamHandler.setFormatter(formatter)
+logger.addHandler(streamHandler)
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
@@ -62,7 +73,7 @@ client.configureMQTTOperationTimeout(5)  # 5 sec
 print('connecting')
 client.connect()
 print('subscribing')
-client.publish(topic="devices/1", payload="device-on")
+# client.publish(topic="devices/1", payload="device-on")
 print('last')
 # Blocking call that processes network traffic, dispatches callbacks and
 # handles reconnecting.
