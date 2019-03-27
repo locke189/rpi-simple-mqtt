@@ -1,5 +1,5 @@
 #import paho.mqtt.client as mqtt
-from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient as mqtt
+from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
 from time import sleep
 from gpiozero import LED
 import os 
@@ -42,8 +42,8 @@ def on_message(client, userdata, msg):
           client.publish(topic="devices/1", payload="device-on")
 
 led.off()
-
-client = mqtt(CLIENT_ID)
+client = None
+client = AWSIoTMQTTClient(CLIENT_ID, useWebsocket=False)
 client.configureEndpoint(HOST, PORT)
 client.configureCredentials(ROOT_CA_PATH, PRIVATE_KEY_PATH, DEVICE_CA_PATH)
 
