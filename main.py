@@ -14,15 +14,11 @@ ROOT_CA_PATH = ROOT_PATH + "/certs/root-CA.crt"
 DEVICE_CA_PATH = ROOT_PATH + "/certs/RPI-DeathRay.cert.pem"
 PRIVATE_KEY_PATH = ROOT_PATH + "/certs/RPI-DeathRay.private.key"
 
-print(ROOT_CA_PATH)
-print(DEVICE_CA_PATH)
-print(PRIVATE_KEY_PATH)
-
-
 #MQTT CLIENT CONFIG
-CLIENT_ID = "DEATHRAY00"
+CLIENT_ID = "basicPubSub"
 HOST = "a1195qphodhbi1-ats.iot.us-east-1.amazonaws.com"
 PORT = 8883
+TOPIC = "devices/1"
 
 led = LED(19)
 
@@ -74,10 +70,10 @@ client.configureMQTTOperationTimeout(5)  # 5 sec
 
 # client.onMessage = on_message
 # client.onOnline = on_connect
-topic = 'test/1'
+
 print('connecting')
 client.connect()
-client.subscribe(topic, 1, customCallback)
+client.subscribe(topic, 1, on_message)
 time.sleep(2)
 print('subscribing')
 # client.publish(topic="devices/1", payload="device-on")
