@@ -69,9 +69,11 @@ client.configureMQTTOperationTimeout(5)  # 5 sec
 
 # client.onMessage = on_message
 # client.onOnline = on_connect
-
+topic = 'test/1'
 print('connecting')
 client.connect()
+client.subscribe(topic, 1, customCallback)
+time.sleep(2)
 print('subscribing')
 # client.publish(topic="devices/1", payload="device-on")
 print('last')
@@ -80,3 +82,13 @@ print('last')
 # Other loop*() functions are available that give a threaded interface and a
 # manual interface.
 #client.loop_forever()
+loopCount = 0
+while True:
+    message = {}
+    message['message'] = 'hello world'
+    message['sequence'] = loopCount
+    messageJson = json.dumps(message)
+    client.publish(topic, messageJson, 1)
+    print('Published topic %s: %s\n' % (topic, messageJson))
+    loopCount += 1
+    time.sleep(1)
