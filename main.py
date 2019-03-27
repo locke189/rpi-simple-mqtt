@@ -6,7 +6,7 @@ import os
 
 #CERT STUFF
 ROOT_PATH = os.path.dirname(os.path.realpath(__file__))
-ROOT_CA_PATH = ROOT_PATH + "/certs/AmazonRootCA1.cert.pem"
+ROOT_CA_PATH = ROOT_PATH + "/certs/root-CA.crt"
 DEVICE_CA_PATH = ROOT_PATH + "/certs/RPI-DeathRay.cert.pem"
 PRIVATE_KEY_PATH = ROOT_PATH + "/certs/RPI-DeathRay.private.key"
 PUBLIC_KEY_PATH = ROOT_PATH + "/certs/RPI-DeathRay.public.key"
