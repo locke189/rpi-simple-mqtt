@@ -1,4 +1,5 @@
 import paho.mqtt.client as mqtt
+import ssl
 from time import sleep
 from gpiozero import LED
 
@@ -34,6 +35,9 @@ client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
 
+# TLS
+client.tls_set("m2mqtt_ca.crt", tls_version=ssl.PROTOCOL_TLSv1_2)
+client.tls_insecure_set(True)
 client.connect("192.168.1.51", 1883, 60)
 
 # Blocking call that processes network traffic, dispatches callbacks and
