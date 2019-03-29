@@ -39,7 +39,7 @@ client.on_message = on_message
 
 # TLS
 
-client.tls_set(dir_path + "/m2mqtt_ca.crt", tls_version=ssl.PROTOCOL_TLSv1_2)
+client.tls_set(dir_path + "/m2mqtt_ca.crt", tls_version=ssl.PROTOCOL_TLSv1_2, cert_reqs=ssl.CERT_NONE)
 client.tls_insecure_set(True)
 client.connect("raspberrypi.local", 8883, 60)
 
