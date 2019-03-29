@@ -2,6 +2,8 @@ import paho.mqtt.client as mqtt
 import ssl
 from time import sleep
 from gpiozero import LED
+import os 
+dir_path = os.path.dirname(os.path.realpath(__file__))
 
 led = LED(19)
 
@@ -36,7 +38,8 @@ client.on_connect = on_connect
 client.on_message = on_message
 
 # TLS
-client.tls_set("m2mqtt_ca.crt", tls_version=ssl.PROTOCOL_TLSv1_2)
+
+client.tls_set(dir_path + "/m2mqtt_ca.crt", tls_version=ssl.PROTOCOL_TLSv1_2)
 client.tls_insecure_set(True)
 client.connect("raspberrypi.local", 8883, 60)
 
