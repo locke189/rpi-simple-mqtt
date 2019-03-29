@@ -38,7 +38,7 @@ client.on_message = on_message
 # TLS
 client.tls_set("m2mqtt_ca.crt", tls_version=ssl.PROTOCOL_TLSv1_2)
 client.tls_insecure_set(True)
-client.connect("192.168.1.51", 1883, 60)
+client.connect("raspberrypi.local", 8883, 60)
 
 # Blocking call that processes network traffic, dispatches callbacks and
 # handles reconnecting.
