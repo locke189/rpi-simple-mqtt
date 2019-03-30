@@ -5,6 +5,10 @@ from gpiozero import LED
 import os 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
+host = 'm16.cloudmqtt.com'
+port = 12844
+user = 'qvuhxeov'
+pwd = 'jDrhVb3FadZV'
 led = LED(19)
 
 # The callback for when the client receives a CONNACK response from the server.
@@ -39,9 +43,10 @@ client.on_message = on_message
 
 # TLS
 
-client.tls_set(dir_path + "/m2mqtt_ca.crt", tls_version=ssl.PROTOCOL_TLSv1_2, cert_reqs=ssl.CERT_NONE)
-client.tls_insecure_set(True)
-client.connect("raspberrypi.local", 8883, 60)
+#client.tls_set(dir_path + "/m2mqtt_ca.crt", tls_version=ssl.PROTOCOL_TLSv1, cert_reqs=ssl.CERT_NONE)
+#client.tls_insecure_set(True)
+client.username_pw_set(username=user,password=pwd)
+client.connect(host, port, 60)
 
 # Blocking call that processes network traffic, dispatches callbacks and
 # handles reconnecting.
